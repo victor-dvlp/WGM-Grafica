@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WGM Gráfica - Impressão Offset e Digital</title>
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FFF8E1',
+                            400: '#D4AF37',
+                            600: '#B8860B',
+                        },
+                        dark: '#121212',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-reverse': 'float-reverse 5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'float-reverse': {
+                            '0%, 100%': { transform: 'translateY(-10px)' },
+                            '50%': { transform: 'translateY(10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85));
+            background-image: url("https://img.freepik.com/fotos-premium/fundo-preto-e-dourado-com-fundo-preto-e-fundo-dourado-e-preto_575980-1165.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #D4AF37;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .partner-logo {
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+        #vanta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        const form = document.querySelector('form');
+        form.addEventListener('submit',function(e){
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            let whatsappMessage = `*Novo contato do site*%0A%0A`;
+            whatsappMessage += `*Nome:* ${name}%0A`;
+            whatsappMessage += `*E-mail:* ${email}%0A`;
+            whatsappMessage += `*Telefone: ${phone}%0A`;
+            whatsappMessage += `*Serviço de Interesse:* ${service}%0A`;
+            whatsappMessage += `*Mensagem:* ${message}`;
+
+            const whatsappNumber = "558184340157";
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+            window.open(whatsappURL,'_blank')
+        });
+
+        // Initialize Vanta.js
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xd4af37,
+            backgroundColor: 0x121212,
+            points: 12.00,
+            maxDistance: 25.00,
+            spacing: 20.00
+        });
+    });
+</script>
+<body class="smooth-scroll bg-dark text-white font-sans">
+    <!-- Header -->
+    <header class="fixed w-full bg-dark/90 backdrop-blur-sm z-50 border-b border-gold-600/20">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-14 h-14 rounded-full bg-gold-400 flex items-center justify-center overflow-hidden border-2 border-gold-400 shadow-lg">
+                    <img src="logo.jpg" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-xl font-bold text-gold-400 hover:text-gold-600 transition duration-300">WGM <span class="text-white">Gráfica</span></h1>
+            </div>
+            
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#home" class="nav-link text-white hover:text-gold-400 transition duration-300">Início</a></li>
+                    <li><a href="#about" class="nav-link text-white hover:text-gold-400 transition duration-300">Sobre</a></li>
+                    <li><a href="#services" class="nav-link text-white hover:text-gold-400 transition duration-300">Serviços</a></li>
+                    <li><a href="#partners" class="nav-link text-white hover:text-gold-400 transition duration-300">Parceiros</a></li>
+                    <li><a href="#contact" class="nav-link text-white hover:text-gold-400 transition duration-300">Contato</a></li>
+                </ul>
+            </nav>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gold-400 hover:text-gold-600 transition duration-300">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark/95 border-t border-gold-600/20 backdrop-blur-sm">
+            <ul class="flex flex-col py-2 px-4 space-y-2">
+                <li><a href="#home" class="block py-3 px-4 text-white hover:text-gold-400 hover:bg-dark/50 rounded-lg transition duration-300">Início</a></li>
+                <li><a href="#about" class="block py-3 px-4 text-white hover:text-gold-400 hover:bg-dark/50 rounded-lg transition duration-300">Sobre</a></li>
+                <li><a href="#services" class="block py-3 px-4 text-white hover:text-gold-400 hover:bg-dark/50 rounded-lg transition duration-300">Serviços</a></li>
+                <li><a href="#partners" class="block py-3 px-4 text-white hover:text-gold-400 hover:bg-dark/50 rounded-lg transition duration-300">Parceiros</a></li>
+                <li><a href="#contact" class="block py-3 px-4 text-white hover:text-gold-400 hover:bg-dark/50 rounded-lg transition duration-300">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center pt-16 relative overflow-hidden">
+        <div id="vanta-bg"></div>
+        <div class="container mx-auto px-4 py-20 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-gold-400 to-gold-600">Excelência</span> em <br>
+                    <span class="text-gold-400 animate-float inline-block">Impressão</span> <span class="animate-float-reverse inline-block" style="animation-delay: 0.5s;">Offset</span> e <br>
+                    <span class="animate-float inline-block" style="animation-delay: 1s;">Digital</span>
+                </h1>
+                <p class="text-lg md:text-xl mb-8 text-gray-300">
+                    Soluções gráficas personalizadas com qualidade premium, agilidade incomparável e preços competitivos.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-500 hover:to-gold-700 text-dark font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg shadow-gold-400/30">
+                        <i data-feather="message-square" class="inline mr-2"></i> Faça seu orçamento
+                    </a>
+                    <a href="#services" class="border-2 border-gold-400 text-gold-400 hover:bg-gold-400/10 font-bold py-3 px-8 rounded-full transition duration-300 hover:shadow-lg hover:shadow-gold-400/20">
+                        <i data-feather="trending-up" class="inline mr-2"></i> Nossos Serviços
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-dark/95 relative">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-mosaic.png')] opacity-10"></div>
+        <div class="container mx-auto px-4 relative">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10 animate-float">
+                    <div class="relative group">
+                        <img src="http://static.photos/office/1024x576/10" alt="Rosangela Macedo" class="rounded-lg shadow-xl border-2 border-gold-400/50 transform group-hover:rotate-1 transition duration-500">
+                        <div class="absolute -inset-2 border-2 border-gold-400/30 rounded-lg opacity-0 group-hover:opacity-100 transition duration-500 transform group-hover:-rotate-1 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-gold-400">
+                        <span class="border-b-4 border-gold-400 pb-2 inline-block">Sobre a WGM Gráfica</span>
+                    </h2>
+                    <p class="mb-6 text-gray-300 leading-relaxed">
+                        Fundada por Rosangela Macedo, com trajetória de gráfica por mais de 15 anos,junto ao seu esposo Clayton André. de frente a produção Gráfica, profissional na área de adesivação e envelopamentos, como garantia de qualidade e rapidez sendo considerado um dos melhores no mercado gráfico, a WGM Gráfica traz mais de 5 anos de experiência no mercado gráfico, oferecendo soluções personalizadas e de alta qualidade para nossos clientes.
+                    </p>
+                    <p class="mb-6 text-gray-300 leading-relaxed">
+                        Nossa missão é proporcionar a melhor experiência em impressão, desde pequenos trabalhos até grandes projetos, com atenção aos detalhes e compromisso com prazos.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <div class="bg-gold-400/10 p-2 rounded-full mr-3">
+                                <i data-feather="check-circle" class="text-gold-400"></i>
+                            </div>
+                            <span class="text-gray-300">Equipamentos de última geração</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gold-400/10 p-2 rounded-full mr-3">
+                                <i data-feather="check-circle" class="text-gold-400"></i>
+                            </div>
+                            <span class="text-gray-300">Profissionais altamente qualificados</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gold-400/10 p-2 rounded-full mr-3">
+                                <i data-feather="check-circle" class="text-gold-400"></i>
+                            </div>
+                            <span class="text-gray-300">Matéria-prima de qualidade premium</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gold-400/10 p-2 rounded-full mr-3">
+                                <i data-feather="check-circle" class="text-gold-400"></i>
+                            </div>
+                            <span class="text-gray-300">Atendimento personalizado</span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center bg-gold-400/10 p-4 rounded-lg border border-gold-400/30 max-w-md">
+                        <div class="bg-gold-400/20 p-3 rounded-full mr-4">
+                            <i data-feather="phone" class="text-gold-400"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-300 block">Fale diretamente com Rosangela:</span>
+                            <span class="text-white font-medium text-lg">(81) 98434-0157</span>
+                        </div>
+                       
+                    </div><br>
+                    <div class="flex items-center bg-gold-400/10 p-4 rounded-lg border border-gold-400/30 max-w-md">
+                        <div class="bg-gold-400/20 p-3 rounded-full mr-4">
+                            <i data-feather="phone" class="text-gold-400"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-300 block">Faça uma chamada direta</span>
+                            <span class="text-white font-medium text-lg">(81) 98947-1290</span>
+                        </div>
+                       
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-dark relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] opacity-5"></div>
+        <div class="container mx-auto px-4 relative">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gold-400">
+                    <span class="border-b-4 border-gold-400 pb-2 inline-block">Nossos Serviços</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-300">
+                    Oferecemos soluções completas em impressão offset e digital para atender todas as suas necessidades gráficas
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-gradient-to-b from-dark/80 to-dark/50 border border-gold-400/20 rounded-xl overflow-hidden transition duration-300 hover:shadow-lg hover:border-gold-400/40">
+                    <div class="h-48 overflow-hidden">
+                        <img src="Captura de tela 2025-10-19 222427.png" alt="Papelaria" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-gold-400/10 p-2 rounded-lg mr-3">
+                                <i data-feather="file-text" class="text-gold-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold-400">Papelaria</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Cartões de visita, flyers, folders, blocos personalizados e todo tipo de material de papelaria corporativa.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center bg-gold-400 hover:bg-gold-600 text-dark font-bold py-2 px-4 rounded transition duration-300">
+                            <i data-feather="message-square" class="mr-2 w-4"></i> Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card bg-gradient-to-b from-dark/80 to-dark/50 border border-gold-400/20 rounded-xl overflow-hidden transition duration-300 hover:shadow-lg hover:border-gold-400/40">
+                    <div class="h-48 overflow-hidden">
+                        <img src="w3.jpg" alt="Aplicação de adesivo" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-gold-400/10 p-2 rounded-lg mr-3">
+                                <i data-feather="tag" class="text-gold-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold-400">Aplicação de Adesivo</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Adesivos personalizados para diversos fins, com aplicação profissional em qualquer superfície.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center bg-gold-400 hover:bg-gold-600 text-dark font-bold py-2 px-4 rounded transition duration-300">
+                            <i data-feather="message-square" class="mr-2 w-4"></i> Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card bg-gradient-to-b from-dark/80 to-dark/50 border border-gold-400/20 rounded-xl overflow-hidden transition duration-300 hover:shadow-lg hover:border-gold-400/40">
+                    <div class="h-48 overflow-hidden">
+                        <img src="w4.jpg" alt="Sinalização" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-gold-400/10 p-2 rounded-lg mr-3">
+                                <i data-feather="compass" class="text-gold-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold-400">Sinalização</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Placas de sinalização interna, totens, displays e outros elementos de comunicação visual.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center bg-gold-400 hover:bg-gold-600 text-dark font-bold py-2 px-4 rounded transition duration-300">
+                            <i data-feather="message-square" class="mr-2 w-4"></i> Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="service-card bg-gradient-to-b from-dark/80 to-dark/50 border border-gold-400/20 rounded-xl overflow-hidden transition duration-300 hover:shadow-lg hover:border-gold-400/40">
+                    <div class="h-48 overflow-hidden">
+                        <img src="Captura de tela 2025-10-20 003339.png" alt="Placas em PS" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-gold-400/10 p-2 rounded-lg mr-3">
+                                <i data-feather="layers" class="text-gold-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold-400">Placas em PS</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Placas de alta durabilidade em poliestireno para identificação e comunicação visual.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center bg-gold-400 hover:bg-gold-600 text-dark font-bold py-2 px-4 rounded transition duration-300">
+                            <i data-feather="message-square" class="mr-2 w-4"></i> Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="service-card bg-gradient-to-b from-dark/80 to-dark/50 border border-gold-400/20 rounded-xl overflow-hidden transition duration-300 hover:shadow-lg hover:border-gold-400/40">
+                    <div class="h-48 overflow-hidden">
+                        <img src="Captura de tela 2025-10-19 175029.png" alt="Sinalização Externa" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-gold-400/10 p-2 rounded-lg mr-3">
+                                <i data-feather="map-pin" class="text-gold-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold-400">Sinalização Externa</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Banners, faixas, letreiros e totens externos resistentes às intempéries.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center bg-gold-400 hover:bg-gold-600 text-dark font-bold py-2 px-4 rounded transition duration-300">
+                            <i data-feather="message-square" class="mr-2 w-4"></i> Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="service-card bg-gradient-to-b from-dark/80 to-dark/50 border border-gold-400/20 rounded-xl overflow-hidden transition duration-300 hover:shadow-lg hover:border-gold-400/40">
+                    <div class="h-48 overflow-hidden">
+                        <img src="Captura de tela 2025-10-19 222401.png" alt="Projetos Especiais" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-gold-400/10 p-2 rounded-lg mr-3">
+                                <i data-feather="star" class="text-gold-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold-400">Projetos Especiais</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Soluções personalizadas para eventos, exposições e necessidades específicas.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center bg-gold-400 hover:bg-gold-600 text-dark font-bold py-2 px-4 rounded transition duration-300">
+                            <i data-feather="message-square" class="mr-2 w-4"></i> Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 7 -->
+                <div class="service-card bg-gradient-to-b from-dark/80 to-dark/50 border border-gold-400/20 rounded-xl overflow-hidden transition duration-300 hover:shadow-lg hover:border-gold-400/40">
+                    <div class="h-48 overflow-hidden">
+                        <img src="http://static.photos/retail/640x360/7" alt="Brindes" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-gold-400/10 p-2 rounded-lg mr-3">
+                                <i data-feather="gift" class="text-gold-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold-400">Brindes</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Canetas, agendas, calendários e outros itens promocionais personalizados.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center bg-gold-400 hover:bg-gold-600 text-dark font-bold py-2 px-4 rounded transition duration-300">
+                            <i data-feather="message-square" class="mr-2 w-4"></i> Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 8 -->
+                <div class="service-card bg-gradient-to-b from-dark/80 to-dark/50 border border-gold-400/20 rounded-xl overflow-hidden transition duration-300 hover:shadow-lg hover:border-gold-400/40">
+                    <div class="h-48 overflow-hidden">
+                        <img src="Captura de tela 2025-10-20 003152.png" alt="Fachadas" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-gold-400/10 p-2 rounded-lg mr-3">
+                                <i data-feather="home" class="text-gold-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold-400">Fachadas</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Letreiros, placas e elementos visuais para valorizar a fachada do seu estabelecimento.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center bg-gold-400 hover:bg-gold-600 text-dark font-bold py-2 px-4 rounded transition duration-300">
+                            <i data-feather="message-square" class="mr-2 w-4"></i> Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service Card 9 -->
+                <div class="service-card bg-gradient-to-b from-dark/80 to-dark/50 border border-gold-400/20 rounded-xl overflow-hidden transition duration-300 hover:shadow-lg hover:border-gold-400/40">
+                    <div class="h-48 overflow-hidden">
+                        <img src="w5.jpg" alt="Envelopamento de veículos" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-gold-400/10 p-2 rounded-lg mr-3">
+                                <i data-feather="truck" class="text-gold-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold-400">Envelopamento de Veículos</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Envelopamento completo ou parcial de veículos com materiais de alta qualidade.
+                        </p>
+                        <a href="#contact" class="inline-flex items-center bg-gold-400 hover:bg-gold-600 text-dark font-bold py-2 px-4 rounded transition duration-300">
+                            <i data-feather="message-square" class="mr-2 w-4"></i> Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="py-20 bg-dark/95 relative">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] opacity-10"></div>
+        <div class="container mx-auto px-4 relative">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gold-400">
+                    <span class="border-b-4 border-gold-400 pb-2 inline-block">Nossos Parceiros</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-300">
+                    Trabalhamos com as melhores empresas e instituições para oferecer soluções gráficas de excelência
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Partner 2 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://sindhospe.org.br/wp-content/uploads/2022/12/PAGINA-PARCEIROS_Prancheta-1-900x550.jpg" alt="Senac Recife" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Senac Recife</h3>
+                </div>
+                
+                <!-- Partner 3 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://sindhospe.org.br/wp-content/uploads/2022/12/PAGINA-PARCEIROS_Prancheta-1-900x550.jpg" alt="Senac Paulista" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Senac Paulista</h3>
+                </div>
+                
+                <!-- Partner 4 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://www.pe.senac.br/wp-content/uploads/2015/11/garanhuns-fachada-01.jpg" alt="Senac Garanhuns" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Senac Garanhuns</h3>
+                </div>
+                
+                <!-- Partner 5 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://www.pe.senac.br/wp-content/uploads/2024/06/IMG_5103.jpg" alt="Senac Serra Talhada" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Senac Serra Talhada</h3>
+                </div>
+                
+                <!-- Partner 6 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://www.pe.senac.br/wp-content/uploads/2015/11/caruaru-unidade-fachada-1.jpg" alt="Senac Caruaru" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Senac Caruaru</h3>
+                </div>
+                
+                <!-- Partner 7 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://www.pe.senac.br/wp-content/uploads/2015/11/vitoria-fachada-01.jpg" alt="Senac Vitória de Santo Antão" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Senac Vitória de Santo Antão</h3>
+                </div>
+                
+                <!-- Partner 8 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://media.licdn.com/dms/image/v2/C4E0BAQEu-xo__Iu4zw/company-logo_200_200/company-logo_200_200/0/1631361570672/grupo_tupan_logo?e=2147483647&v=beta&t=cna0EaEAGBRhIJz1vJnlUvb3JVOlkqQ-doyxghuaQug" alt="Grupo Tupan" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Grupo Tupan</h3>
+                </div>
+                
+                <!-- Partner 9 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNUJvZMHhJQr2Bj63-DQbqodZUGnk70ZfkoQ&s" alt="Chorophylla" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Chorophylla</h3>
+                </div>
+                
+                <!-- Partner 10 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://www.turquesa.com.br/wp-content/uploads/2025/02/Turquesa-Feijao-de-Corda-Gourmet-Novo-1.png" alt="Turquesa" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Turquesa</h3>
+                </div>
+                
+                <!-- Partner 11 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://imagens.ne10.uol.com.br/veiculos/_midias/jpg/2025/05/08/morada_da_paz_paulista__1_-34408096.jpg" alt="Grupo cemitério Morada da paz" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Morada da Paz</h3>
+                </div>
+                
+                <!-- Partner 12 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpjhbGouSDIKIRmY9UegDtvjY-fpFVDVpjwQ&s" alt="R&a comunicação" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">R&a Comunicação</h3>
+                </div>
+                
+                <!-- Partner 13 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://yt3.googleusercontent.com/ytc/AIdro_ldJedmoyEHavg0D75VZOpvxtBX29G4YSATQXsvVwX4ZO8=s900-c-k-c0x00ffffff-no-rj" alt="Aleixo comunicação" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Aleixo Comunicação</h3>
+                </div>
+                
+                <!-- Partner 14 -->
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://raichu-uploads.s3.amazonaws.com/logo_grupo-gav_kcywwW.png" alt="Gav resolts" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Gav Resorts</h3>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="lafleur.jpg" alt="LaFleur" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">La Fleur</h3>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="mobiles parla delli.jpg" alt="Mobiles parla delli" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Mobiles parla delli</h3>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="wasser.jpg" alt="Wasser" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Wasser</h3>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="honda.jpg" alt="Honda" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Honda</h3>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="clinicasim.jpg" alt="Clínica Sim" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Clínica Sim</h3>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="rededor.jpg" alt="Rede dor " class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Rede dor</h3>
+                </div>
+
+                
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9S6zBC7Gdnffi2CuDaU9fJ_fKBmoHAVe7ew&s" alt="Mobi" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Mobi</h3>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://conortepe.com.br/images/brt.jpg" alt="Conorte" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Conorte</h3>
+                </div>
+
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="data:image/jpeg;base64,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" alt="Celpe" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Grupo Neoenergia</h3>
+                </div>
+
+
+                <div class="flex flex-col items-center justify-center bg-dark/50 border border-gold-400/20 rounded-xl p-6 hover:bg-dark/70 transition duration-300">
+                    <div class="w-24 h-24 mb-4 flex items-center justify-center">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D0BAQG9V4xuzL9BzQ/company-logo_200_200/company-logo_200_200/0/1707240969099/ara_empreendimentos_logo?e=2147483647&v=beta&t=JIsxlQhLkRo-UWaR4NH5UnjWFzaQENSG-OBTTlDZ1IQ" alt="Ara empreendimentos" class="partner-logo w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-center font-medium text-gold-400">Ara empreendimentos</h3>
+                </div>
+
+                
+
+
+                <!--https://media.licdn.com/dms/image/v2/D4D0BAQG9V4xuzL9BzQ/company-logo_200_200/company-logo_200_200/0/1707240969099/ara_empreendimentos_logo?e=2147483647&v=beta&t=JIsxlQhLkRo-UWaR4NH5UnjWFzaQENSG-OBTTlDZ1IQ-->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] opacity-5"></div>
+        <div class="container mx-auto px-4 relative">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4 text-gold-400">
+                        <span class="border-b-4 border-gold-400 pb-2 inline-block">Entre em Contato</span>
+                    </h2>
+                    <p class="text-gray-300">
+                        Solicite um orçamento ou tire suas dúvidas sobre nossos serviços
+                    </p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-10">
+                    <div class="lg:w-1/2">
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block mb-2 text-gold-400 font-medium">Nome</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-dark/50 border border-gold-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent placeholder-gray-500" placeholder="Seu nome completo" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2 text-gold-400 font-medium">E-mail</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-dark/50 border border-gold-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent placeholder-gray-500" placeholder="seu@email.com" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block mb-2 text-gold-400 font-medium">Telefone</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 bg-dark/50 border border-gold-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent placeholder-gray-500" placeholder="(81) 99999-9999">
+                            </div>
+                            <div>
+                                <label for="service" class="block mb-2 text-gold-400 font-medium">Serviço de Interesse</label>
+                                <select id="service" class="w-full px-4 py-3 bg-dark/50 border border-gold-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent text-gray-300">
+                                    <option value="" class="text-gray-500">Selecione um serviço</option>
+                                    <option value="papelaria" class="text-gray-300">Papelaria</option>
+                                    <option value="adesivo" class="text-gray-300">Aplicação de Adesivo</option>
+                                    <option value="sinalizacao" class="text-gray-300">Sinalização</option>
+                                    <option value="placas-ps" class="text-gray-300">Placas em PS</option>
+                                    <option value="sinalizacao-externa" class="text-gray-300">Sinalização Externa</option>
+                                    <option value="projetos-especiais" class="text-gray-300">Projetos Especiais</option>
+                                    <option value="brindes" class="text-gray-300">Brindes</option>
+                                    <option value="fachadas" class="text-gray-300">Fachadas</option>
+                                    <option value="envelopamento" class="text-gray-300">Envelopamento de Veículos</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block mb-2 text-gold-400 font-medium">Mensagem</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 bg-dark/50 border border-gold-400/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent placeholder-gray-500" placeholder="Descreva seu projeto ou dúvida"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-500 hover:to-gold-700 text-dark font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg shadow-gold-400/20 flex items-center justify-center">
+                                <i data-feather="send" class="mr-2"></i> Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="lg:w-1/2">
+                        <div class="bg-gradient-to-b from-dark/50 to-dark/30 border border-gold-400/20 rounded-xl p-8 h-full shadow-lg">
+                            <h3 class="text-xl font-bold mb-6 text-gold-400">Informações de Contato</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="bg-gold-400/10 p-3 rounded-lg mr-4">
+                                        <i data-feather="map-pin" class="text-gold-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1">Endereço</h4>
+                                        <p class="text-gray-300">Rua Francisco Fernandes da Rocha 52</p>
+                                        <p class="text-gray-300">Vila Popular, Olinda - PE</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-gold-400/10 p-3 rounded-lg mr-4">
+                                        <i data-feather="mail" class="text-gold-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1">E-mail</h4>
+                                        <a href="mailto:wgmproducoesgraficadigital@gmail.com" class="text-gray-300 hover:text-gold-400 transition duration-300">wgmproducoesgraficadigital@gmail.com</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-gold-400/10 p-3 rounded-lg mr-4">
+                                        <i data-feather="phone" class="text-gold-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1">Telefone</h4>
+                                        <a href="tel:+5581984340157" class="text-gray-300 hover:text-gold-400 transition duration-300">(81) 98434-0157</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-gold-400/10 p-3 rounded-lg mr-4">
+                                        <i data-feather="clock" class="text-gold-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1">Horário de Funcionamento</h4>
+                                        <p class="text-gray-300">Segunda a Sexta: 09:00 - 18:00</p>
+                                        <p class="text-gold-400 font-medium">NÃO FECHAMOS PARA ALMOÇO!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8 pt-6 border-t border-gold-400/20">
+                                <h4 class="font-bold mb-4 text-gold-400">Redes Sociais</h4>
+                                <div class="flex space-x-4">
+                                    <a href="https://www.instagram.com/wgmproducoesgrafica/" class="w-12 h-12 rounded-full border border-gold-400/30 flex items-center justify-center hover:bg-gold-400/10 transition hover:shadow-lg hover:shadow-gold-400/10">
+                                        <i data-feather="instagram" class="text-gold-400"></i>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@grafica.wgm.sinali?_t=ZM-90iEKcP859w&_r=1" class="w-12 h-12 rounded-full border border-gold-400/30 flex items-center justify-center hover:bg-gold-400/10 transition hover:shadow-lg hover:shadow-gold-400/10">
+                                        <i class="text-gold-400">TikTok</i>
+                                    </a>
+                                    <a href="https://www.facebook.com/share/16TJKhispc/" class="w-12 h-12 rounded-full border border-gold-400/30 flex items-center justify-center hover:bg-gold-400/10 transition hover:shadow-lg hover:shadow-gold-400/10">
+                                        <i data-feather="facebook" class="text-gold-400"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark border-t border-gold-400/20 py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full bg-gold-400 flex items-center justify-center overflow-hidden border-2 border-gold-400 shadow-lg">
+                            <span class="text-dark font-bold text-lg">WGM</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-gold-400">WGM Gráfica</h2>
+                    </div>
+                    <p class="mt-2 text-gray-400 text-sm">
+                        Excelência em impressão offset e digital desde 2020
+                    </p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400 text-sm">
+                        © 2025 WGM Gráfica. Todos os direitos reservados.
+                    </p>
+                    <p class="text-gray-500 text-xs mt-1">
+                        Desenvolvido com <i data-feather="heart" class="inline text-red-400 w-3 h-3"></i> para você
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+                
+                const icon = this.querySelector('i');
+                if (menu.classList.contains('hidden')) {
+                    feather.icons.menu.replace(icon);
+                } else {
+                    feather.icons.x.replace(icon);
+                }
+            });
+            
+            // Close mobile menu when clicking on links
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    document.getElementById('mobile-menu-button').querySelector('i').replaceWith(feather.icons.menu.toSvg());
+                });
+            });
+            
+            // Animate elements when scrolling
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.service-card, .partner-logo');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animation
+            document.querySelectorAll('.service-card, .partner-logo').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+            });
+            
+            // Run on load and scroll
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Initialize feather icons
+            feather.replace();
+        });
+    </script>
+</body>
+</html>
